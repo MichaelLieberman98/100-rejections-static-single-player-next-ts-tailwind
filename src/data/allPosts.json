@@ -1,0 +1,282 @@
+[
+  {
+    "post_id": 1,
+    "company_name": "Twitternation",
+    "desc": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+    "date": "1/31/2023",
+    "time": "5:11 PM",
+    "id": 1,
+    "userInfo": {
+      "_id": 1,
+      "email": "loleta.sperring@gmail.com",
+      "first_name": "Loleta",
+      "last_name": "Sperring"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Tambee",
+    "desc": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.",
+    "date": "3/6/2023",
+    "time": "1:12 PM",
+    "id": 2,
+    "userInfo": {
+      "_id": 1,
+      "email": "loleta.sperring@gmail.com",
+      "first_name": "Loleta",
+      "last_name": "Sperring"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Gabspot",
+    "desc": "Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "date": "3/13/2023",
+    "time": "4:22 PM",
+    "id": 3,
+    "userInfo": {
+      "_id": 2,
+      "email": "audra.garey@gmail.com",
+      "first_name": "Audra",
+      "last_name": "Garey"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Dynava",
+    "desc": "Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+    "date": "3/27/2023",
+    "time": "4:39 PM",
+    "id": 4,
+    "userInfo": {
+      "_id": 2,
+      "email": "audra.garey@gmail.com",
+      "first_name": "Audra",
+      "last_name": "Garey"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Browsezoom",
+    "desc": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.",
+    "date": "3/30/2023",
+    "time": "4:35 PM",
+    "id": 5,
+    "userInfo": {
+      "_id": 3,
+      "email": "dacia.brasse@gmail.com",
+      "first_name": "Dacia",
+      "last_name": "Brasse"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Fanoodle",
+    "desc": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.",
+    "date": "2/28/2023",
+    "time": "2:02 PM",
+    "id": 6,
+    "userInfo": {
+      "_id": 3,
+      "email": "dacia.brasse@gmail.com",
+      "first_name": "Dacia",
+      "last_name": "Brasse"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "LiveZ",
+    "desc": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.",
+    "date": "2/15/2023",
+    "time": "1:27 PM",
+    "id": 7,
+    "userInfo": {
+      "_id": 4,
+      "email": "wally.penritt@gmail.com",
+      "first_name": "Wally",
+      "last_name": "Penritt"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Gigazoom",
+    "desc": "Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis.",
+    "date": "1/18/2023",
+    "time": "2:29 PM",
+    "id": 8,
+    "userInfo": {
+      "_id": 4,
+      "email": "wally.penritt@gmail.com",
+      "first_name": "Wally",
+      "last_name": "Penritt"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Demivee",
+    "desc": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
+    "date": "3/22/2023",
+    "time": "3:52 PM",
+    "id": 9,
+    "userInfo": {
+      "_id": 5,
+      "email": "florance.trotman@gmail.com",
+      "first_name": "Florance",
+      "last_name": "Trotman"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Linklinks",
+    "desc": "Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam. Nam tristique tortor eu pede.",
+    "date": "1/16/2023",
+    "time": "12:19 PM",
+    "id": 10,
+    "userInfo": {
+      "_id": 5,
+      "email": "florance.trotman@gmail.com",
+      "first_name": "Florance",
+      "last_name": "Trotman"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Brightbean",
+    "desc": "Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus. Curabitur at ipsum ac tellus semper interdum. Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",
+    "date": "1/22/2023",
+    "time": "1:16 PM",
+    "id": 11,
+    "userInfo": {
+      "_id": 6,
+      "email": "woodrow.stoneham@gmail.com",
+      "first_name": "Woodrow",
+      "last_name": "Stoneham"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Browsecat",
+    "desc": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis.",
+    "date": "1/29/2023",
+    "time": "5:09 PM",
+    "id": 12,
+    "userInfo": {
+      "_id": 6,
+      "email": "woodrow.stoneham@gmail.com",
+      "first_name": "Woodrow",
+      "last_name": "Stoneham"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Quimm",
+    "desc": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem.",
+    "date": "3/15/2023",
+    "time": "1:39 PM",
+    "id": 13,
+    "userInfo": {
+      "_id": 7,
+      "email": "lindie.skim@gmail.com",
+      "first_name": "Lindie",
+      "last_name": "Skim"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Oyope",
+    "desc": "Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.",
+    "date": "1/29/2023",
+    "time": "3:42 PM",
+    "id": 14,
+    "userInfo": {
+      "_id": 7,
+      "email": "lindie.skim@gmail.com",
+      "first_name": "Lindie",
+      "last_name": "Skim"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Devshare",
+    "desc": "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros.",
+    "date": "2/22/2023",
+    "time": "4:24 PM",
+    "id": 15,
+    "userInfo": {
+      "_id": 8,
+      "email": "maddy.humbie@gmail.com",
+      "first_name": "Maddy",
+      "last_name": "Humbie"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Riffpath",
+    "desc": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend.",
+    "date": "1/20/2023",
+    "time": "12:37 PM",
+    "id": 16,
+    "userInfo": {
+      "_id": 8,
+      "email": "maddy.humbie@gmail.com",
+      "first_name": "Maddy",
+      "last_name": "Humbie"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Quatz",
+    "desc": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
+    "date": "2/10/2023",
+    "time": "12:54 PM",
+    "id": 17,
+    "userInfo": {
+      "_id": 9,
+      "email": "perle.nana@gmail.com",
+      "first_name": "Perle",
+      "last_name": "Nana"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Flashpoint",
+    "desc": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
+    "date": "1/20/2023",
+    "time": "3:17 PM",
+    "id": 18,
+    "userInfo": {
+      "_id": 9,
+      "email": "perle.nana@gmail.com",
+      "first_name": "Perle",
+      "last_name": "Nana"
+    }
+  },
+  {
+    "post_id": 1,
+    "company_name": "Quinu",
+    "desc": "Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.",
+    "date": "3/29/2023",
+    "time": "3:59 PM",
+    "id": 19,
+    "userInfo": {
+      "_id": 10,
+      "email": "shaylynn.pilmer@gmail.com",
+      "first_name": "Shaylynn",
+      "last_name": "Pilmer"
+    }
+  },
+  {
+    "post_id": 2,
+    "company_name": "Fatz",
+    "desc": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+    "date": "2/9/2023",
+    "time": "5:43 PM",
+    "id": 20,
+    "userInfo": {
+      "_id": 10,
+      "email": "shaylynn.pilmer@gmail.com",
+      "first_name": "Shaylynn",
+      "last_name": "Pilmer"
+    }
+  }
+]

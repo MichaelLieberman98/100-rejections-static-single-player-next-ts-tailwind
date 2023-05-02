@@ -1,11 +1,82 @@
+// src/pages/index.tsx
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import path from 'path';
 
-const inter = Inter({ subsets: ['latin'] })
+import users from '../data/users.json';
+// import allPosts from '../data/allPosts.json';
+
+const inter = Inter({ subsets: ['latin'] });
+
+type PostWithUserInfo = {
+  company_name: string;
+  desc: string;
+  date: string;
+  time: string;
+  userInfo: {
+    _id: number;
+    email: string;
+    first_name: string;
+    last_name: string;
+  };
+};
 
 export default function Home() {
+  console.log("Home");
+
+  useEffect(() => {
+    //place all users into 'allPosts'
+    const allPosts: PostWithUserInfo[] = [];
+    let id: number = 1;
+    users.forEach(user => {
+      user.posts.forEach(post => {
+        // console.log(post);
+        const postWithUserInfo = {
+          ...post,
+          id: id,
+          userInfo: {
+            _id: user._id,
+            email: user.email,
+            first_name: user.first_name,
+            last_name: user.last_name
+          }
+        };
+        allPosts.push(postWithUserInfo);
+        id++;
+      });
+    });
+
+    const allPostsJSON = JSON.stringify(allPosts, null, 2);
+
+    // console.log(allPostsJSON);
+
+    appendData(allPostsJSON);
+    console.log("useEffect");
+  }, []);
+
+  async function appendData(data: string) {
+    const filePath = path.join(process.cwd(), 'data', 'allPosts.json');
+
+    console.log(filePath);
+
+    const response = await fetch('/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data, filePath })
+    });
+  
+    if (response.ok) {
+      console.log('Data appended to file');
+    } else {
+      console.error('An error occurred');
+    }
+  }
+
   return (
     <>
       <Head>
@@ -14,8 +85,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <div className={styles.description}>
+      {/* ${styles.main} ${inter.className} */}
+      <main className={``}>
+        <h2>Main</h2>
+      </main>
+    </>
+  )
+}
+
+
+{/* <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.tsx</code>
@@ -107,8 +186,4 @@ export default function Home() {
               with&nbsp;Vercel.
             </p>
           </a>
-        </div>
-      </main>
-    </>
-  )
-}
+        </div> */}
