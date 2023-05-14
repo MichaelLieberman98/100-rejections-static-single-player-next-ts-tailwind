@@ -13,6 +13,7 @@ type LayoutProps = {
 // {isLoggedIn}: LayoutProps
 
 export default function Layout({ children }: LayoutProps) {
+  console.log(currentUser._id >= 0);
   return (
     <>
       <Navbar isLoggedIn={currentUser._id >= 0}/>

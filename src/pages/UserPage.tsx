@@ -9,11 +9,16 @@ import { User, Post } from '../types/types';
 export default function UserPage({ user }: { user: User }) {
   console.log(user);
   const posts: Post[] = user.posts;
+
+  function addPost() {
+
+  }
   return (
     <div className={classnames(``)}>
       <h1>{user._id}</h1>
       <h1>{user.email}</h1>
       <StarGrid posts={posts}/>
+      <button className={classnames(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)} onClick={addPost}>Add</button>
     </div>
   );
 }

@@ -6,15 +6,26 @@ import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 type StarProps = {
   isLit: boolean;
+  n: number;
+  postsLength: number;
 }
 
-export default function Star({ isLit }: StarProps) {
+export default function Star({ isLit, n, postsLength }: StarProps) {
+  // console.log("inside star", isLit, n, postsLength);
   const [isFilled, setIsFilled] = useState(false)
   // let clicked: JSX.Element = isFilled ? filledStar : emptyStar
   return (
     <div className={classnames(`pr-1.5 lg:py-2 lg:px-1.5`)}>
       <button onClick={() => {setIsFilled(!isFilled)}}>
-        {isFilled ? <AiFillStar /> : <AiOutlineStar />}
+        {isLit ? (
+          // <div className={classnames(`filled ${n < postsLength}`)}>
+            <AiFillStar/>
+          // </div>
+        ) : (
+          // <div className={classnames(`empty ${n < postsLength}`)}>
+            <AiOutlineStar/>
+          // </div>
+        )}
       </button>
     </div>
   )
