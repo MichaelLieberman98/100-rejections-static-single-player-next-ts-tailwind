@@ -9,68 +9,54 @@ import path from 'path';
 import users from '../data/users.json';
 // import allPosts from '../data/allPosts.json';
 
+// import { PostWithUserInfo } from '../types/types';
+
+import generateData from '../utils/generateData';
+
+import usersToPosts from '@/utils/usersToPosts';
+
 const inter = Inter({ subsets: ['latin'] });
 
-type PostWithUserInfo = {
-  company_name: string;
-  desc: string;
-  date: string;
-  time: string;
-  userInfo: {
-    _id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-  };
-};
-
 export default function Home() {
-  console.log("Home");
+  // console.log("Home");
 
   useEffect(() => {
-    //place all users into 'allPosts'
-    const allPosts: PostWithUserInfo[] = [];
-    let id: number = 1;
-    users.forEach(user => {
-      user.posts.forEach(post => {
-        // console.log(post);
-        const postWithUserInfo = {
-          ...post,
-          id: id,
-          userInfo: {
-            _id: user._id,
-            email: user.email,
-            first_name: user.first_name,
-            last_name: user.last_name
-          }
-        };
-        allPosts.push(postWithUserInfo);
-        id++;
-      });
-    });
+    //generate data
+    // let users = generateData(3, 0, 4);
+    // const usersJSON = JSON.stringify(users, null, 2);
 
-    const allPostsJSON = JSON.stringify(allPosts, null, 2);
+    //place all users into 'allPosts'
+    // let allPosts = usersToPosts(users);
+    // const postsJSON = JSON.stringify(allPosts, null, 2);
 
     // console.log(allPostsJSON);
 
-    appendData(allPostsJSON);
-    console.log("useEffect");
+    // appendData(usersJSON, postsJSON);
+    // console.log("useEffect");
   }, []);
 
-  async function appendData(data: string) {
-    const filePath = path.join(process.cwd(), 'data', 'allPosts.json');
-
-    console.log(filePath);
-
-    const response = await fetch('/api/appendToFile', {
+  async function appendData(users: string, posts: string) {
+    // console.log("in index/appendData");
+    // console.log(data.length);
+    const usersResponse = await fetch('/api/appendToFile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ data, filePath })
+      body: JSON.stringify({ data: users, fileName: "users" })
     });
+    // console.log("index/appendData", usersResponse);
+
+    const postsResponse = await fetch('/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: users, fileName: "posts" })
+    });
+    // console.log("index/appendData", postsResponse);
   
-    if (response.ok) {
+    if (usersResponse.ok && postsResponse.ok) {
       console.log('Data appended to file');
     } else {
       console.error('An error occurred');

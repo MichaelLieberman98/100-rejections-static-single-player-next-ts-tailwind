@@ -1,0 +1,25 @@
+{
+  "_id": 9,
+  "email": "perle.nana@gmail.com",
+  "password": "FUyXSzvoe",
+  "first_name": "Perle",
+  "last_name": "Nana",
+  "posts": [
+    {
+      "post_id": 1,
+      "company_name": "Quatz",
+      "desc": "Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi.",
+      "date": "2/10/2023",
+      "time": "12:54 PM",
+      "userId": 9
+    },
+    {
+      "post_id": 2,
+      "company_name": "Flashpoint",
+      "desc": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.",
+      "date": "1/20/2023",
+      "time": "3:17 PM",
+      "userId": 9
+    }
+  ]
+}

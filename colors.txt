@@ -1,0 +1,13 @@
+nav background - #0d0d0d
+main background - #131313
+username / password input backgrounds - #19191d
+forgot password button background - #4852a3
+star - #ffd707
+remember me checkbox - #1e1e1e
+
+adding info / details to a rejection text box background - #202028
+
+
+old text for Links - //text-gray-600 hover:text-gray-800
+
+

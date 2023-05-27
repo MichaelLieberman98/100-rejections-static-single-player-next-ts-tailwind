@@ -1,23 +1,27 @@
 {
-  "_id": 1,
-  "email": "loleta.sperring@gmail.com",
-  "password": "LnClbpbhT",
-  "first_name": "Loleta",
-  "last_name": "Sperring",
+  "id": "v1WQ3p3H",
+  "email": "a@gmail.com",
+  "firstName": "first",
+  "lastName": "last",
+  "password": "jslafkdjfdkf",
   "posts": [
     {
-      "post_id": 1,
-      "company_name": "Twitternation",
-      "desc": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-      "date": "1/31/2023",
-      "time": "5:11 PM"
+      "postId": "gG9esbOA",
+      "companyName": "Company1",
+      "desc": "I had a great time!",
+      "date": "5/27/2023",
+      "time": "6:48 AM",
+      "timeInSeconds": 738438480,
+      "userId": "v1WQ3p3H"
     },
     {
-      "post_id": 2,
-      "company_name": "Tambee",
-      "desc": "Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.",
-      "date": "3/6/2023",
-      "time": "1:12 PM"
+      "postId": "1POoM7NJ",
+      "companyName": "another company",
+      "desc": "info",
+      "date": "5/27/2023",
+      "time": "6:53 AM",
+      "timeInSeconds": 738438831,
+      "userId": "v1WQ3p3H"
     }
   ]
 }

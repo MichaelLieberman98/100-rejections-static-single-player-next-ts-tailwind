@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
-import { Post } from '../types/types';
+import { User, Post } from '../types/types';
 
 import Star from './Star';
 
 import starNums from '../data/starNums.json';
+
+import currentUser from '../data/currentUser.json';
 
 import cn from 'classnames';
 
@@ -17,6 +19,8 @@ const StarGrid = ({ posts }: StarGridProps) => {
   const [numCols, setNumCols] = useState<number>(0);
   const [numRows, setNumRows] = useState<number>(0);
   const stars: JSX.Element[] = [];
+
+  let tempUser: User = currentUser;
   // const [starSize]
 
   useEffect(() => {
@@ -54,7 +58,10 @@ const StarGrid = ({ posts }: StarGridProps) => {
       {starNums.map((n) => {
         // console.log(n, posts.length, n < posts.length);
         return (
-          <Star isLit={n < posts.length} n={n} postsLength={posts.length}/>
+          <div>
+            {/* <h6>id{tempUser.posts.length}</h6> */}
+            <Star isLit={n < posts.length} n={n} postId={n < tempUser.posts.length ? tempUser.posts[n].postId : "null"} postsLength={posts.length}/>
+          </div>
         )
       })}
 

@@ -87,6 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
+  background-color: #131313;
   /* background: linear-gradient(
       to bottom,
       transparent,
@@ -110,3 +111,13 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .visually-hidden {
+    @apply absolute;
+    clip: rect(0 0 0 0);
+    @apply w-1 h-1;
+    @apply m-[-1px] p-0 border-0;
+    @apply overflow-hidden;
+  }
+}

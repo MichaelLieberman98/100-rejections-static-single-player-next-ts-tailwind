@@ -1,14 +1,9 @@
 {
-  "post_id": 1,
-  "company_name": "Twitternation",
-  "desc": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
-  "date": "1/31/2023",
-  "time": "5:11 PM",
-  "id": 1,
-  "userInfo": {
-    "_id": 1,
-    "email": "loleta.sperring@gmail.com",
-    "first_name": "Loleta",
-    "last_name": "Sperring"
-  }
+  "postId": "gG9esbOA",
+  "companyName": "Company1",
+  "desc": "I had a great time!",
+  "date": "5/27/2023",
+  "time": "6:48 AM",
+  "timeInSeconds": 738438480,
+  "userId": "v1WQ3p3H"
 }

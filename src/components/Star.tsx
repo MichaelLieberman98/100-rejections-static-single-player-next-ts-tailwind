@@ -1,22 +1,60 @@
-import { useState} from "react";
 import classnames from 'classnames';
+
+import { User, Post } from '../types/types';
 
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
+import currentUser from '../data/currentUser.json';
+
+import { useRouter } from 'next/router';
 
 type StarProps = {
   isLit: boolean;
   n: number;
+  postId: string;
   postsLength: number;
 }
 
-export default function Star({ isLit, n, postsLength }: StarProps) {
+export default function Star({ isLit, n, postId, postsLength }: StarProps) {
+  let tempUser: User = currentUser;
+  const router = useRouter();
   // console.log("inside star", isLit, n, postsLength);
-  const [isFilled, setIsFilled] = useState(false)
+  // const [isFilled, setIsFilled] = useState(false)
   // let clicked: JSX.Element = isFilled ? filledStar : emptyStar
+  // onClick={() => {setIsFilled(!isFilled)}}
+  async function handleStarClick() {
+    if (postId !== "null") {
+      let post: Post = tempUser.posts.filter(post => postId === post.postId)[0];
+      // console.log(post);
+      let postJSON = JSON.stringify(post, null, 2);
+      const postResponse = await fetch('/api/appendToFile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: postJSON, fileName: "currentPost" })
+      });
+
+      if (postResponse.ok) {
+        // Redirect to login page
+        // console.log("currentPost appended to file WORKED");
+        router.push('/StarPage');
+      } else {
+        // Show error message
+        const data = await postResponse.json();
+        // console.log("currentPost error message", data.message);
+        // console.log("LOGIN DIDNT WORK");
+      }
+    }
+    // console.log(currentUser.posts);
+    // let validPosts = currentUser.posts.filter(post => postId === post.postId);
+    // console.log(validPosts);
+    // let post: Post = currentUser.posts.filter(post => postId === post.postId)[0];
+    // console.log(post);
+  }
   return (
     <div className={classnames(`pr-1.5 lg:py-2 lg:px-1.5`)}>
-      <button onClick={() => {setIsFilled(!isFilled)}}>
+      <button onClick={() => (handleStarClick())}>
         {isLit ? (
           // <div className={classnames(`filled ${n < postsLength}`)}>
             <AiFillStar/>

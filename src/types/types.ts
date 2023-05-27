@@ -1,17 +1,26 @@
 export type User = {
-  _id: number;
+  id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   password: string;
-  first_name: string;
-  last_name: string;
   posts: Post[];
 };
 
 export type Post = {
-  post_id: number
-  company_name: string
+  postId: string
+  companyName: string
   desc: string
   date: string
   time: string
-  user_id: number
+  timeInSeconds: number
+  userId: string
 }
+
+// export type PostWithUserInfo = {
+//   company_name: string;
+//   desc: string;
+//   date: string;
+//   time: string;
+//   user_id: string;
+// };
