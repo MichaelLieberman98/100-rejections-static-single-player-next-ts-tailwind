@@ -13,12 +13,17 @@ import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 import currentUser from '../data/currentPost.json';
 import currentPost from '../data/currentPost.json';
 
-export default function AddStar() {
+export default function EditStar() {
   let tempUser: Post = currentUser;
   let tempPost: Post = currentPost;
   let [companyName, setCompanyName] = useState(tempPost.companyName);
   let [desc, setDesc] = useState(tempPost.desc);
   let router = useRouter();
+
+  const companyNameMaxChars = 30;
+  let [companyNameCharCount, setCompanyNameCharCount] = useState(tempPost.companyName.length);
+  const descMaxChars = 300;
+  let [descCharCount, setDescCharCount] = useState(tempPost.desc.length);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -39,6 +44,17 @@ export default function AddStar() {
       // console.log("LOGIN DIDNT WORK");
     }
   }
+
+  function handleCompanyNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setCompanyName(e.target.value);
+    setCompanyNameCharCount(e.target.value.length);
+  }
+
+  function handleDescChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setDesc(e.target.value);
+    setDescCharCount(e.target.value.length);
+  }
+
   return (
     <div className={cn(`p-[30px]`)}>
       <form className={cn(`flex flex-col`)} onSubmit={handleSubmit}>
@@ -51,22 +67,26 @@ export default function AddStar() {
             type="text"
             id="company_name"
             value={companyName}
-            onChange={e => setCompanyName(e.target.value)}
+            maxLength={companyNameMaxChars}
+            onChange={handleCompanyNameChange}
             required
             placeholder="Company name"
-            className={cn(`bg-[#202028]`)}
+            className={cn(`placeholder:p-[10px] bg-[#202028] mr-[20px] w-[400px]`)}
           />
+          <h3>{companyNameCharCount} / {companyNameMaxChars}</h3>
         </div>
         <div>
         <label className={cn(`visually-hidden`)} htmlFor="description">Description</label>
           <textarea
             id="desc"
             value={desc}
-            onChange={e => setDesc(e.target.value)}
+            maxLength={descMaxChars}
+            onChange={handleDescChange}
             required
             placeholder="Add any information you want about the company, your interview experience, etc."
             className={cn(`w-full placeholder:p-[10px] h-[300px] bg-[#202028]`)}
           />
+          <h3 className={cn(`flex flex-row-reverse`)}>{descCharCount} / {descMaxChars}</h3>
         </div>
 
         <div className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2 justify-between flex flex-row w-[300px]`)}>

@@ -32,6 +32,15 @@ export default async function handler(
 
     console.log("newPost", newPost);
 
+    const updateCurrentPostResponse = await fetch('http://localhost:3000/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: JSON.stringify(newPost, null, 2), fileName: "currentPost" })
+    });
+    // ^ UPDATED CURRENT USER
+
     let tempUser: User = currentUser;
 
     tempUser.posts.push(newPost);
@@ -47,34 +56,30 @@ export default async function handler(
     });
     // ^ UPDATED CURRENT USER
 
-    // const newUsers = users.filter(user => function(user: User) {
-    //   if (user._id === currentUser._id) {
-    //     user.posts.push(newPost);
-    //     return user;
-    //   }
-    //   return user;
-    // });
-    const user = users.find(user => user.id === currentUser.id);
-    if (user) {
-      user.posts.push(newPost);
-    }
+    let newUsers = users.map(user => user.id === tempUser.id ? tempUser : user);
 
     const updateUsersResponse = await fetch('http://localhost:3000/api/appendToFile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ data: JSON.stringify(users, null, 2), fileName: "users" })
+      body: JSON.stringify({ data: JSON.stringify(newUsers, null, 2), fileName: "users" })
     });
     // ^ UPDATED ALL USERS
 
-    // allPosts.push(newPost);
+    let newPosts = [...allPosts];
+    newPosts.unshift(newPost);
     
-    /*
-    NOW GOTTA UPDATE THE ACTUAL 'allPosts' ARRAY...
-    WILL DO LATER */
+    const updatePostsResponse = await fetch('http://localhost:3000/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: JSON.stringify(newPosts, null, 2), fileName: "posts" })
+    });
+    // ^ UPDATED ALL POSTS
 
-    if (updateCurrentUserResponse.ok) {
+    if (updateCurrentPostResponse.ok && updateCurrentUserResponse.ok && updateUsersResponse.ok && updatePostsResponse.ok) {
       console.log("data appended to file");
     } else {
       console.error("An error occurred");

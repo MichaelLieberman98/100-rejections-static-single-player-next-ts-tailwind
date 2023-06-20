@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import cn from 'classnames';
 import fs from 'fs';
 import Link from 'next/link';
 import path from 'path';
@@ -11,18 +11,17 @@ export default function UserPage({ user }: { user: User }) {
   // console.log(user);
   const posts: Post[] = user.posts;
 
-  function addPost() {
-
-  }
   return (
-    <div className={classnames(``)}>
-      <h1>{user.id}</h1>
-      <h1>{user.email}</h1>
-      <h1>{user.firstName}</h1>
-      <h1>{user.lastName}</h1>
-      <StarGrid posts={posts}/>
-      <Link href="/AddStar" className={classnames(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)}>Add</Link>
-      {/* <button className={classnames(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)} onClick={addPost}>Add</button> */}
+    <div className={cn(`text-center`)}>
+      <img className={cn(`w-[150px] h-[150px] rounded-full mr-[10px mx-auto`)} src={user.profilePic} alt="Pic"></img>
+      {/* <div className={cn(`flex flex-row w-[90%] mx-auto`)}> */}
+        {/* <div className={cn(`mr-[10px] bg-[green] px-[10px] rounded-[10px]`)}>
+        </div> */}
+      {/* </div> */}
+      <h1 className={cn(`text-[30px] mx-auto`)}>{user.firstName} {user.lastName}</h1>
+      <StarGrid data-textid="star-grid" posts={posts}/>
+      <Link href="/AddStar" className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)}>Add</Link>
+      {/* <button className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)} onClick={addPost}>Add</button> */}
     </div>
   );
 }

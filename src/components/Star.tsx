@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import classnames from 'classnames';
 
 import { User, Post } from '../types/types';
@@ -5,6 +6,7 @@ import { User, Post } from '../types/types';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 import currentUser from '../data/currentUser.json';
+import currentPost from '../data/currentPost.json';
 
 import { useRouter } from 'next/router';
 
@@ -13,10 +15,12 @@ type StarProps = {
   n: number;
   postId: string;
   postsLength: number;
+  'data-testid'?: string;
 }
 
-export default function Star({ isLit, n, postId, postsLength }: StarProps) {
+export default function Star({ isLit, n, postId, postsLength, 'data-testid': testId }: StarProps) {
   let tempUser: User = currentUser;
+  let tempPost: Post = currentPost;
   const router = useRouter();
   // console.log("inside star", isLit, n, postsLength);
   // const [isFilled, setIsFilled] = useState(false)
@@ -52,16 +56,38 @@ export default function Star({ isLit, n, postId, postsLength }: StarProps) {
     // let post: Post = currentUser.posts.filter(post => postId === post.postId)[0];
     // console.log(post);
   }
+
+  async function handleStarClick2() {
+    if (postId !== "null") {
+      const post = tempUser.posts.find(post => postId === post.postId);
+      
+      // let postJSON = JSON.stringify({...tempPost, postId: postId}, null, 2);
+      let postJSON = JSON.stringify(post, null, 2);
+      const sendPostIdToJson = await fetch('/api/appendToFile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ data: postJSON, fileName: "currentPost" })
+      });
+
+      if (sendPostIdToJson.ok) {
+        router.push('/StarPage');
+      } else {
+        const data = await sendPostIdToJson.json();
+      }
+    }
+  }
   return (
-    <div className={classnames(`pr-1.5 lg:py-2 lg:px-1.5`)}>
-      <button onClick={() => (handleStarClick())}>
+    <div data-testid={testId} className={classnames(`${isLit ? 'isLit' : 'isNotLit'} pr-1.5 lg:py-2 lg:px-1.5`)}>
+      <button onClick={() => (handleStarClick2())}>
         {isLit ? (
           // <div className={classnames(`filled ${n < postsLength}`)}>
-            <AiFillStar/>
+            <AiFillStar data-testid="star-icon"/>
           // </div>
         ) : (
           // <div className={classnames(`empty ${n < postsLength}`)}>
-            <AiOutlineStar/>
+            <AiOutlineStar data-testid="star-outline-icon"/>
           // </div>
         )}
       </button>

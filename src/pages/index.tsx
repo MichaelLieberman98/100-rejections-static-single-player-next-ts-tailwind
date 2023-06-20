@@ -1,10 +1,12 @@
 // src/pages/index.tsx
 import React, { useEffect, useState } from 'react';
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import Head from 'next/head';
+import Image from 'next/image';
+import Router from 'next/router';
+// import { Inter } from 'next/font/google';
+import styles from '@/styles/Home.module.css';
 import path from 'path';
+import { User, Post } from '../types/types';
 
 import users from '../data/users.json';
 // import allPosts from '../data/allPosts.json';
@@ -15,27 +17,47 @@ import generateData from '../utils/generateData';
 
 import usersToPosts from '@/utils/usersToPosts';
 
-const inter = Inter({ subsets: ['latin'] });
+import currentUser from '../data/currentUser.json';
+
+// const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   // console.log("Home");
 
   useEffect(() => {
     //generate data
-    // let users = generateData(3, 0, 4);
-    // const usersJSON = JSON.stringify(users, null, 2);
+    let users = generateData(3, 2, 2);
+    const usersJSON = JSON.stringify(users, null, 2);
 
-    //place all users into 'allPosts'
-    // let allPosts = usersToPosts(users);
-    // const postsJSON = JSON.stringify(allPosts, null, 2);
+    //place all posts into 'allPosts'
+    let allPosts = usersToPosts(users);
+    const postsJSON = JSON.stringify(allPosts, null, 2);
 
     // console.log(allPostsJSON);
 
-    // appendData(usersJSON, postsJSON);
+    let currentUser: User = {
+      ...users[0],
+      id: ""
+    }
+    const currentUserJSON = JSON.stringify(currentUser, null, 2);
+
+    let currentPost: Post = {
+      ...users[0].posts[0],
+      postId: ""
+    }
+    const currentPostJSON = JSON.stringify(currentPost, null, 2);
+
+    appendData(usersJSON, postsJSON, currentUserJSON, currentPostJSON);
     // console.log("useEffect");
+
+    if (currentUser.id === "") {
+      Router.push('/About');
+    } else {
+      Router.push('/UserPage');
+    }
   }, []);
 
-  async function appendData(users: string, posts: string) {
+  async function appendData(users: string, posts: string, currentUser: string, currentPost: string) {
     // console.log("in index/appendData");
     // console.log(data.length);
     const usersResponse = await fetch('/api/appendToFile', {
@@ -47,16 +69,34 @@ export default function Home() {
     });
     // console.log("index/appendData", usersResponse);
 
+    const currentUserResponse = await fetch('/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: currentUser, fileName: "currentUser" })
+    });
+    // console.log("index/appendData", postsResponse);
+
+    const currentPostResponse = await fetch('/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: currentPost, fileName: "currentPost" })
+    });
+    // console.log("index/appendData", currentPostResponse);
+
     const postsResponse = await fetch('/api/appendToFile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ data: users, fileName: "posts" })
+      body: JSON.stringify({ data: posts, fileName: "posts" })
     });
-    // console.log("index/appendData", postsResponse);
+    // console.log("index/appendData", currentPostResponse);
   
-    if (usersResponse.ok && postsResponse.ok) {
+    if (usersResponse.ok && currentUserResponse.ok && currentPostResponse.ok && postsResponse.ok) {
       console.log('Data appended to file');
     } else {
       console.error('An error occurred');
@@ -78,98 +118,3 @@ export default function Home() {
     </>
   )
 }
-
-
-{/* <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>src/pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
-
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div> */}

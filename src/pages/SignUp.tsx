@@ -3,12 +3,14 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import SignUpForm from '@/components/SignUpForm';
+
 const SignUp = () => {
-  const [email, setEmail] = useState('ab@gmail.com');
-  const [first_name, setFirstName] = useState('laijdf');
-  const [last_name, setLastName] = useState('ldfdfijast');
-  const [password, setPassword] = useState('fasdfdsf');
-  const [reEnterPassword, setReEnterPassword] = useState('fasdfdsf');
+  const [email, setEmail] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [reEnterPassword, setReEnterPassword] = useState('');
   
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [alreadyExists, setAlreadyExists] = useState(false);
@@ -18,33 +20,49 @@ const SignUp = () => {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     
-    if (password !== reEnterPassword) setPasswordsMatch(true);
-    else setPasswordsMatch(false);
-
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, first_name, last_name, password }),
-    });
-
-    if (res.ok) {
-      setAlreadyExists(false);
-      // Redirect to login page
-      // console.log("REGISTER WORKED");
-      router.push('/Login');
+    if (password !== reEnterPassword) {
+      setPasswordsMatch(false);
     } else {
-      // Show error message
-      setAlreadyExists(true);
-      // console.log("REGISTER DIDNT WORK");
+      setPasswordsMatch(true);
+
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, first_name, last_name, password }),
+      });
+
+      if (res.ok) {
+        setAlreadyExists(false);
+        // Redirect to login page
+        // console.log("REGISTER WORKED");
+        router.push('/Login');
+      } else {
+        // Show error message
+        setAlreadyExists(true);
+        // console.log("REGISTER DIDNT WORK");
+      }
     }
   };
 
   return (
     <div className={cn(`mt-[20px] bg-[red] flex flex-col text-center`)}>
-      <h1 className={cn(``)}>Sign Up</h1>
-      <h3 className={cn(`${alreadyExists ? 'block' : 'hidden'} bg-[#ff0000]`)}>Some info is repeated from another user</h3>
-      <h3 className={cn(`${!passwordsMatch ? 'block' : 'hidden'} bg-[#ff0000]`)}>Passwords don't match</h3>
-      <form onSubmit={handleSubmit} className={cn(`max-w-[600px] w-[80%] mx-auto`)}>
+      <SignUpForm email={email}
+        setEmail={setEmail}
+        first_name={first_name}
+        setFirstName={setFirstName}
+        last_name={last_name}
+        setLastName={setLastName}
+        password={password}
+        setPassword={setPassword}
+        reEnterPassword={reEnterPassword}
+        setReEnterPassword={setReEnterPassword}
+        passwordsMatch={passwordsMatch}
+        setPasswordsMatch={setPasswordsMatch}
+        alreadyExists={alreadyExists}
+        setAlreadyExists={setAlreadyExists}
+        handleSubmit={handleSubmit}
+      />
+      {/* <form onSubmit={handleSubmit} className={cn(`max-w-[600px] w-[80%] mx-auto`)}>
         <div className={cn(`flex flex-row justify-between`)}>
           <label htmlFor="email" className={cn(``)}>Email:</label>
           <input
@@ -58,16 +76,6 @@ const SignUp = () => {
         </div>
         
         <br className={cn(``)}/>
-        {/* <label htmlFor="username" className={cn(``)}>Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={}
-          onChange={e => setUserName(e.target.value)}
-          required
-          className={cn(``)}
-        />
-        <br className={cn(``)}/> */}
         <label htmlFor="firstName" className={cn(``)}>First Name:</label>
         <input
           type="text"
@@ -109,12 +117,11 @@ const SignUp = () => {
         />
         <br className={cn(``)}/>
         <button type="submit" className={cn(``)}>Sign Up</button>
-      </form>
-      {/* <h3>Already have an account? <span onClick={() => { router.push('/login') }}>Sign in</span></h3> */}
-      <h3>
+      </form> */}
+      <h3 className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)}>
         Already have an account?{' '}
-        <Link href="/login">
-          Sign in
+        <Link className={cn(``)} href="/Login">
+          Login
         </Link>
       </h3>
     </div>

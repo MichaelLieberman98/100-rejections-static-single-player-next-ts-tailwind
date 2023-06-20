@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
   // console.log(currentUser.id !== "");
   return (
     <>
-      <Navbar isLoggedIn={currentUser.id !== ""}/>
+      <Navbar data-testid="navbar" isLoggedIn={currentUser.id !== ""} />
       <main>{children}</main>
     </>
   )

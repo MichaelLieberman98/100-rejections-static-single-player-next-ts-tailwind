@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { User, Post } from '../../types/types';
 import currentUser from '../../data/currentUser.json';
 import users from '../../data/users.json';
+import posts from '../../data/posts.json';
 
 export default async function handler(
   req: NextApiRequest,
@@ -14,6 +15,8 @@ export default async function handler(
     let tempUsers: User[] = users;
 
     let tempUser: User = currentUser;
+
+    let tempPosts: Post[] = posts;
 
     let deletedPost: Post = tempUser.posts.filter(post => post.postId === postId)[0];
     let validPosts: Post[] = tempUser.posts.filter(post => post.postId !== postId);
@@ -58,7 +61,17 @@ export default async function handler(
       body: JSON.stringify({ data: JSON.stringify(tempUsers, null, 2), fileName: "users" })
     });
 
-    if (updateCurrentPost.ok && updateCurrentUser.ok && updateAllUsers.ok) {
+    let newPosts = tempPosts.filter(post => post.postId !== postId);
+
+    const updateAllPosts = await fetch('http://localhost:3000/api/appendToFile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ data: JSON.stringify(newPosts, null, 2), fileName: "posts" })
+    });
+
+    if (updateCurrentPost.ok && updateCurrentUser.ok && updateAllUsers.ok && updateAllPosts.ok) {
       console.log("post deleted successfully!");
     } else {
       console.log("post not deleted successfully!");

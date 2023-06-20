@@ -5,6 +5,7 @@ export default function generateUsers(numUsers: number, minPosts: number, maxPos
   let users: User[] = [];
 
   for (let i = 0; i < numUsers; i++) {
+    const profilePic = faker.image.avatar();
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     const email = `${firstName}.${lastName}@gmail.com`;
@@ -39,6 +40,7 @@ export default function generateUsers(numUsers: number, minPosts: number, maxPos
     }
 
     users.push({
+      profilePic: profilePic,
       id: id,
       email: email,
       firstName: firstName,

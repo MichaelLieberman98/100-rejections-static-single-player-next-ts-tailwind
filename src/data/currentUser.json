@@ -1,27 +1,28 @@
 {
-  "id": "v1WQ3p3H",
-  "email": "a@gmail.com",
-  "firstName": "first",
-  "lastName": "last",
-  "password": "jslafkdjfdkf",
+  "profilePic": "https://avatars.githubusercontent.com/u/6445587",
+  "id": "",
+  "email": "Bettye.Auer@gmail.com",
+  "firstName": "Bettye",
+  "lastName": "Auer",
+  "password": "dcOTZC424gfEWcy",
   "posts": [
     {
-      "postId": "gG9esbOA",
-      "companyName": "Company1",
-      "desc": "I had a great time!",
-      "date": "5/27/2023",
-      "time": "6:48 AM",
-      "timeInSeconds": 738438480,
-      "userId": "v1WQ3p3H"
+      "postId": "mLYTsDua",
+      "companyName": "Stracke LLC",
+      "desc": "Deleniti enim modi modi.",
+      "date": "3/1/2023",
+      "time": "12:36 PM",
+      "timeInSeconds": 730978844,
+      "userId": "Dsv2fBcM"
     },
     {
-      "postId": "1POoM7NJ",
-      "companyName": "another company",
-      "desc": "info",
-      "date": "5/27/2023",
-      "time": "6:53 AM",
-      "timeInSeconds": 738438831,
-      "userId": "v1WQ3p3H"
+      "postId": "B8GMlcIz",
+      "companyName": "Stamm, Reinger and Huels",
+      "desc": "Cum reiciendis nulla iure ab voluptas.",
+      "date": "1/18/2023",
+      "time": "14:1 PM",
+      "timeInSeconds": 727281650,
+      "userId": "Dsv2fBcM"
     }
   ]
 }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
 import classnames from 'classnames';
 
 import currentUser from '../data/currentUser.json';
@@ -16,21 +17,38 @@ import { FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
 
 import { useRouter } from 'next/router';
 
-export default function StarPage() {
+import path from 'path';
+
+import fs from 'fs';
+
+interface StarPageProps {
+  currentPost: Post;
+}
+
+export default function StarPage({ currentPost }: StarPageProps) {
   let router = useRouter();
   let tempUser: User = currentUser;
-  let tempPost: Post = currentPost;
+  console.log(currentPost);
+  // let tempPost: Post = post;
+  // console.log(tempPost.companyName);
+  // console.log(tempPost.desc);
   let [sureToDelete, setSureToDelete] = useState(false);
+  let [contentLoaded, setContentLoaded] = useState(false);
+
+  useEffect(() => {
+    // tempPost = currentUser.posts.filter(post => post.postId === tempPost.postId)[0];
+
+  }, [])
 
   function handleEdit() {
     router.push('/EditStar');
   }
 
   async function handleYesDelete() {
-    const deleteRes = await fetch('/api/auth/deletestar', {
+    const deleteRes = await fetch('/api/deletestar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ postId: tempPost.postId }),
+      body: JSON.stringify({ postId: currentPost.postId }),
     });
 
     if (deleteRes.ok) {
@@ -50,9 +68,9 @@ export default function StarPage() {
         <div className={classnames(`flex mr-[20px]`)}>
           <AiFillStar className={classnames(`m-auto`)}/>
         </div>
-        <h1 className={classnames(`text-[24px]`)}>{tempPost.companyName}</h1>
+        <h1 className={classnames(`text-[24px]`)}>{currentPost.companyName}</h1>
       </div>
-      <p className={classnames(`mt-[20px]`)}>{tempPost.desc}</p>
+      <p className={classnames(`mt-[20px]`)}>{currentPost.desc}</p>
       <div className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2 justify-between flex flex-row w-[300px]`)}>
         <Link legacyBehavior href="/UserPage">
           <a className={cn(`w-[50px] h-[50px] rounded-full bg-[#202028] flex`)}>
@@ -87,4 +105,41 @@ export default function StarPage() {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context: any) => {
+  const currentPostPath = path.join(process.cwd(), 'src', 'data', 'currentPost.json')
+  const currentPostContents = fs.readFileSync(currentPostPath, 'utf8')
+  const post: Post = JSON.parse(currentPostContents)
+  const desiredPostId = post.postId;
+  
+  const currentUserPath = path.join(process.cwd(), 'src', 'data', 'currentUser.json')
+  const currentUserContents = fs.readFileSync(currentUserPath, 'utf8')
+  // console.log("currentUserContents", currentUserContents);
+  const user: User = JSON.parse(currentUserContents)
+  // console.log("user STUFF", user);
+  const posts = user.posts;
+  // console.log("POOOOSTS", posts);
+
+  // console.log("desired post id", desiredPostId);
+
+  // Find the user with the given userId
+  const currentPost = posts.find(post => post.postId === desiredPostId);
+  // console.log("CURRENT POSTS FOUND", currentPost);
+
+  // Find the post with the given postId
+
+  // Check if the post was found
+  if (!currentPost) {
+    // If the post was not found, return a 404 error
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      currentPost
+    }
+  }
 }

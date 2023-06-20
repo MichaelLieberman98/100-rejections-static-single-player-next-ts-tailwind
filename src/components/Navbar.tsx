@@ -13,9 +13,10 @@ import { gsap, Power3 } from 'gsap';
 
 type NavbarProps = {
   isLoggedIn: boolean;
+  'data-testid'?: string,
 };
 
-export default function Navbar({ isLoggedIn }: NavbarProps) {
+export default function Navbar({ isLoggedIn, 'data-testid': testId }: NavbarProps) {
   let [isOpen, setOpen] = useState(false);
   let menu: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
 
@@ -36,7 +37,7 @@ export default function Navbar({ isLoggedIn }: NavbarProps) {
 
   // console.log(isLoggedIn);
   return (
-    <nav className={cn(`flex flex-row items-center justify-between flex-wrap p-6 bg-[#0d0d0d]`)}>
+    <nav data-testid={testId} className={cn(`flex flex-row items-center justify-between flex-wrap p-6 bg-[#0d0d0d]`)}>
       <div className={cn(`left flex flex-row justify-between`)}>
         <Link className={cn(`text-2xl font-bold text-white sm:mr-[0px] lg:mr-[40px]`)} href="/">
           100 REJECTIONS
@@ -136,13 +137,14 @@ export default function Navbar({ isLoggedIn }: NavbarProps) {
             How It Works
           </Link>
         </div>
-        {/* <div className={cn(`flex flex-row mb-[10px]`)}>
+      </div>
+    </nav>
+  );
+}
+
+{/* <div className={cn(`flex flex-row mb-[10px]`)}>
           <div className={cn(`flex`)}>
             <CgNotes className={cn(`m-auto mr-[14px]`)}/>
           </div>
           <h3 className={cn(`text-white`)}>Notes</h3>
         </div> */}
-      </div>
-    </nav>
-  );
-}

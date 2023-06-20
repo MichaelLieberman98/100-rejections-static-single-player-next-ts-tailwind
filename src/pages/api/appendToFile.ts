@@ -10,7 +10,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
     console.log("appendToFile stuff", data, fileName);
 
     let map = new Map();
-    map.set("allPosts", path.join(process.cwd(), 'src', 'data', 'allPosts.json'));
+    map.set("posts", path.join(process.cwd(), 'src', 'data', 'posts.json'));
     map.set("users", path.join(process.cwd(), 'src', 'data', 'users.json'));
     map.set("currentUser", path.join(process.cwd(), 'src', 'data', 'currentUser.json'));
     map.set("currentPost", path.join(process.cwd(), 'src', 'data', 'currentPost.json'));
