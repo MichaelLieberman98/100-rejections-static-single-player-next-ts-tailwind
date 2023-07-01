@@ -7,6 +7,8 @@ import StarGrid from '../components/StarGrid';
 
 import { User, Post } from '../types/types';
 
+import { CiSettings } from "react-icons/ci";
+
 export default function UserPage({ user }: { user: User }) {
   // console.log(user);
   const posts: Post[] = user.posts;
@@ -20,8 +22,19 @@ export default function UserPage({ user }: { user: User }) {
       {/* </div> */}
       <h1 className={cn(`text-[30px] mx-auto`)}>{user.firstName} {user.lastName}</h1>
       <StarGrid data-textid="star-grid" posts={posts}/>
-      <Link href="/AddStar" className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)}>Add</Link>
+      <div className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2 w-[200px] flex flex-row justify-between`)}>
+        <Link href="/AddStar" className={cn(`text-[20px]`)}>
+          Add
+        </Link>
+        <Link className={cn(`text-[20px]`)} href="/Settings">
+          {/* <CiSettings className={cn(`h-full w-ful`)}/> */}
+          Settings
+        </Link>
+      </div>
       {/* <button className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)} onClick={addPost}>Add</button> */}
+      {/* <Link className={cn(`absolute left-1/2 bottom-24 transform -translate-x-1/2`)} href="/Settings">
+        <CiSettings/>
+      </Link> */}
     </div>
   );
 }

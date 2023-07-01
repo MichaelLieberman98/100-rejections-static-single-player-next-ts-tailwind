@@ -6,6 +6,8 @@ import { faker } from '@faker-js/faker';
 
 import users from '../../../data/users.json';
 
+import defaultPic from '../../../images/default_pfp.svg';
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -33,6 +35,7 @@ export default async function handler(
     let posts: Post[] = [];
 
     let newUser: User = {
+      profilePic: defaultPic,
       id: faker.string.alphanumeric(8),
       email: email,
       firstName: firstName,

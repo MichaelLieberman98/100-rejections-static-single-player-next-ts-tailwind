@@ -13,7 +13,7 @@ export default function Logout() {
 
       if (res.ok) {
         // Redirect to home page
-        router.push('/');
+        router.push('/About');
       } else {
         // Show error message
         // console.log("LOGOUT DIDNT WORK");

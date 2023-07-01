@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import cn from 'classnames';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Hamburger from 'hamburger-react';
 
@@ -19,6 +20,7 @@ type NavbarProps = {
 export default function Navbar({ isLoggedIn, 'data-testid': testId }: NavbarProps) {
   let [isOpen, setOpen] = useState(false);
   let menu: React.MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const router = useRouter();
 
   const moveMenuFunc = (duration: number) => {
     // console.log("move menu");
@@ -35,11 +37,20 @@ export default function Navbar({ isLoggedIn, 'data-testid': testId }: NavbarProp
     setOpen(!isOpen);
   }
 
+  function handleLogoClick(e: React.MouseEvent) {
+    e.preventDefault();
+    if (isLoggedIn) {
+      router.push('/UserPage');
+    } else {
+      router.push('/About');
+    }
+  }
+
   // console.log(isLoggedIn);
   return (
     <nav data-testid={testId} className={cn(`flex flex-row items-center justify-between flex-wrap p-6 bg-[#0d0d0d]`)}>
       <div className={cn(`left flex flex-row justify-between`)}>
-        <Link className={cn(`text-2xl font-bold text-white sm:mr-[0px] lg:mr-[40px]`)} href="/">
+        <Link className={cn(`text-2xl font-bold text-white sm:mr-[0px] lg:mr-[40px]`)} href="/" onClick={handleLogoClick}>
           100 REJECTIONS
         </Link>
         <div className={cn(`options flex flex-row justify-between w-[180px] items-center sm:hidden lg:flex`)}>

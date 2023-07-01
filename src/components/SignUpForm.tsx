@@ -38,16 +38,16 @@ export default function SignUpForm({
   handleSubmit
 }: SignUpFormProps) {
   return (
-    <form onSubmit={handleSubmit} className={cn(`absolute w-auto tems-start mx-auto left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col p-[30px]`)}>
-      <div className={cn(`flex flex-row justify-between`)}>
-        <br className={cn(`h-[10px] color-[#00ff00]`)}/>
-        <h1 className={cn(``)}>Sign Up</h1>
-        <hr className={cn(``)}/>
+    <form onSubmit={handleSubmit} className={cn(`sm:w-[400px] lg: bg-[blue] absolute w-auto tems-start mx-auto left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col px-[30px] py-[40px]`)}>
+      <div className={cn(`flex flex-row justify-between items-center mb-[24px]`)}>
+        <hr className={cn(`w-[100px] color-[#0000ff`)}/>
+        <h1 className={cn(`text-[24px]`)}>Sign Up</h1>
+        <hr className={cn(`w-[100px]`)}/>
       </div>
       <h3 className={cn(`${alreadyExists ? 'block' : 'hidden'} bg-[#ff0000]`)}>Some info is repeated from another user</h3>
       <h3 className={cn(`${!passwordsMatch ? 'block' : 'hidden'} bg-[#ff0000]`)}>Passwords don't match</h3>
-      <h4 className={cn(``)}>Create your account. It's free and only takes a minute</h4>
-      <div className={cn(``)}>
+      {/* <h4 className={cn(`text-[12px] mb-[24px]`)}>Create your account. It's free and only takes a minute</h4> */}
+      <div className={cn(`flex flex-col gap-[24px] mb-[24px] sm:flex-col sm:gap-[24px] lg:flex-row lg:justify-between lg:gap-[24px] lg:h-[30px]`)}>
         <input
           type="text"
           id="firstName"
@@ -55,7 +55,7 @@ export default function SignUpForm({
           placeholder='First Name'
           onChange={e => setFirstName(e.target.value)}
           required
-          className={cn(``)}
+          className={cn(`w-full placeholder:p-[12px] bg-[red]`)}
         />
         <input
           type="text"
@@ -64,9 +64,10 @@ export default function SignUpForm({
           placeholder='Last Name'
           onChange={e => setLastName(e.target.value)}
           required
-          className={cn(``)}
+          className={cn(`w-full placeholder:p-[12px] bg-[orange]`)}
         />
       </div>
+
       <input
         type="email"
         id="email"
@@ -74,7 +75,7 @@ export default function SignUpForm({
         placeholder='Email'
         onChange={e => setEmail(e.target.value)}
         required
-        className={cn(``)}
+        className={cn(`mb-[24px] placeholder:p-[12px] h-[30px]`)}
       />
       <input
         type="password"
@@ -83,7 +84,7 @@ export default function SignUpForm({
         placeholder='Password'
         onChange={e => setPassword(e.target.value)}
         required
-        className={cn(``)}
+        className={cn(`mb-[24px] placeholder:p-[12px] h-[30px]`)}
       />
       <input
         type="password"
@@ -92,9 +93,9 @@ export default function SignUpForm({
         placeholder='Confirm Password'
         onChange={e => setReEnterPassword(e.target.value)}
         required
-        className={cn(``)}
+        className={cn(`mb-[24px] placeholder:p-[12px] h-[30px]`)}
       />
-      <button type="submit" className={cn(``)}>Sign Up</button>
+      <button type="submit" className={cn(`h-[30px]`)}>Sign Up</button>
     </form>
   );
 }

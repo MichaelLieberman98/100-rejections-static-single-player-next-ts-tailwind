@@ -118,3 +118,17 @@ export default function Home() {
     </>
   )
 }
+
+export async function getServerSideProps(context: any) {
+  // check the value of currentUser.id
+  if (currentUser.id === "") {
+    // redirect to /About
+    context.res.writeHead(302, { Location: '/About' });
+    context.res.end();
+  } else {
+    // redirect to /UserPage
+    context.res.writeHead(302, { Location: '/UserPage' });
+    context.res.end();
+  }
+  return { props: {} };
+}

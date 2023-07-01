@@ -3,9 +3,11 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import LoginForm from '@/components/LoginForm';
+
 export default function Login() {
-  const [email, setEmail] = useState('a@gmail.com');
-  const [password, setPassword] = useState('jslafkdjfdkf');
+  const [email, setEmail] = useState('Retta.Paucek@gmail.com');
+  const [password, setPassword] = useState('Av4lfY7CvOIQ9XG');
 
   const router = useRouter();
 
@@ -32,9 +34,15 @@ export default function Login() {
 
   return (
     <div className={cn(`mt-[20px] bg-[red] flex flex-col text-center`)}>
-      <h1 className={cn(``)}>Login</h1>
-      <form onSubmit={handleSubmit} className={cn(`max-w-[600px] w-[80%] mx-auto`)}>
-        <div className={cn(`flex flex-row justify-between`)}>
+      <LoginForm email={email} 
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        handleSubmit={handleSubmit}
+      />
+      {/* <h1 className={cn(``)}>Login</h1> */}
+      {/* <form onSubmit={handleSubmit} className={cn(`max-w-[600px] w-[80%] mx-auto`)}> */}
+        {/* <div className={cn(`flex flex-row justify-between`)}>
           <label htmlFor="email" className={cn(``)}>Email:</label>
           <input
             type="email"
@@ -44,9 +52,9 @@ export default function Login() {
             required
             className={cn(``)}
           />
-        </div>
+        </div> */}
         
-        <br className={cn(``)}/>
+        {/* <br className={cn(``)}/> */}
         {/* <label htmlFor="username" className={cn(``)}>Username:</label>
         <input
           type="text"
@@ -57,7 +65,7 @@ export default function Login() {
           className={cn(``)}
         />
         <br className={cn(``)}/> */}
-        <label htmlFor="password" className={cn(``)}>Password:</label>
+        {/* <label htmlFor="password" className={cn(``)}>Password:</label>
         <input
           type="password"
           id="password"
@@ -67,8 +75,8 @@ export default function Login() {
           className={cn(``)}
         />
         <br className={cn(``)}/>
-        <button type="submit" className={cn(``)}>Login</button>
-      </form>
+        <button type="submit" className={cn(``)}>Login</button> */}
+      {/* </form> */}
       {/* <h3>Already have an account? <span onClick={() => { router.push('/login') }}>Sign in</span></h3> */}
       <h3>
         Don't have an account?{' '}
